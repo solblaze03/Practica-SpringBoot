@@ -1,10 +1,11 @@
 package com.ccsw.tutorial.common.pagination;
 
-import org.springframework.data.domain.Sort;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.data.domain.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PageableRequest implements Serializable {
 
@@ -39,6 +40,12 @@ public class PageableRequest implements Serializable {
 
     public void setSort(List<SortRequest> sort) {
         this.sort = sort;
+    }
+
+
+    @JsonIgnore
+    public Pageable getPageable(){
+        return PageRequest.of(this.pageNumber, this.pageSize, Sort.by(sort.stream().map(e -> new Sort.Order(e.getDirection(), e.getProperty())).collect(Collectors.toList())));
     }
 
     public int getPageSize() {
