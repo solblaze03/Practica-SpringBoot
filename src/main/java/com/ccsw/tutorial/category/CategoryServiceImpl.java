@@ -19,7 +19,10 @@ public class CategoryServiceImpl implements CategoryService {
     CategoryRepository categoryRepository;
 
 
-
+    @Override
+    public Category get(Long id) {
+        return this.categoryRepository.findById(id).orElse(null);
+    }
 
     @Override
     public List<Category> findAll() {
@@ -35,7 +38,7 @@ public class CategoryServiceImpl implements CategoryService {
             category = new Category();
 
         }else{
-            category = this.categoryRepository.findById(id).orElse(null);
+            category = this.get(id);
         }
 
 
@@ -48,6 +51,11 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void delete(Long id) throws Exception {
+
+        if(this.get(id) != null){
+            throw new Exception("NotExists");
+        }
+
         this.categoryRepository.deleteById(id);
     }
 }
