@@ -1,21 +1,17 @@
-package com.ccsw.tutorial.category.model;
+package com.ccsw.tutorial.customer.model;
+
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Entity
-@Table(name = "category")
-public class Category {
-
+@Table(name = "client")
+public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
 
     public Long getId() {
@@ -33,6 +29,4 @@ public class Category {
     public void setName(String name) {
         this.name = name;
     }
-
-
 }

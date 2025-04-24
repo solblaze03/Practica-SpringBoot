@@ -44,6 +44,8 @@ public class CategoryServiceImpl implements CategoryService {
 
         category.setName(dto.getName());
 
+        System.out.println(category.getName()+ " " + category.getId() );
+
         this.categoryRepository.save(category);
 
 
@@ -52,7 +54,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void delete(Long id) throws Exception {
 
-        if(this.get(id) != null){
+        if(this.get(id) == null){
             throw new Exception("NotExists");
         }
 

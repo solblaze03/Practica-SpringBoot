@@ -44,8 +44,6 @@ public class CategoryController {
     @PutMapping(path = {"" ,"/{id}"})
     public void save(@PathVariable(name = "id", required = false) Long id, @RequestBody CategoryDto dto) {
        this.categoryService.save(id, dto);
-
-
     }
 
     @Operation(summary = "Delete", description = "Method that deletes a category")
