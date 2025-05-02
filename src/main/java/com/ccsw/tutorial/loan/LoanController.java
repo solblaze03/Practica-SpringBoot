@@ -32,10 +32,10 @@ public class LoanController {
     public Page<LoanDto> findPage(@RequestBody LoanSearchDto dto,
                                   @RequestParam(name = "title", required = false) String title,
                                   @RequestParam(name = "customer", required = false) String customer,
-                                  @RequestParam(name = "date" , required = false) String date
-    ){
+                                  @RequestParam(name = "date", required = false) String date
+    ) {
 
-        Page<Loan> page = this.loanService.findPage(dto,title, customer,date );
+        Page<Loan> page = this.loanService.findPage(dto, title, customer, date);
 
         return new PageImpl<>(page.getContent().stream().map(e -> modelMapper.map(e, LoanDto.class)).collect(Collectors.toList()), page.getPageable(), page.getTotalElements());
     }
@@ -43,17 +43,16 @@ public class LoanController {
 
     @Operation(summary = "Save", description = "Method that saves or updates a Loan")
     @RequestMapping(path = "", method = RequestMethod.PUT)
-    public ResponseEntity save(@RequestBody LoanDto dto){
+    public ResponseEntity save(@RequestBody LoanDto dto) {
 
         return this.loanService.save(dto);
     }
 
     @Operation(summary = "Delete", description = "Method than delete a Loan")
     @DeleteMapping(path = "/{id}")
-    public void delete(@PathVariable(name = "id") Long id){
-        this.loanService.delete(id); ;
+    public void delete(@PathVariable(name = "id") Long id) {
+        this.loanService.delete(id);
     }
-
 
 
 }

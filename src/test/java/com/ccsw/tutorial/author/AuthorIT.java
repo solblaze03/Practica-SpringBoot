@@ -4,6 +4,7 @@ import com.ccsw.tutorial.author.model.AuthorDto;
 import com.ccsw.tutorial.author.model.AuthorSearchDto;
 import com.ccsw.tutorial.common.pagination.PageableRequest;
 import com.ccsw.tutorial.config.ResponsePage;
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -42,6 +43,8 @@ public class AuthorIT {
     ParameterizedTypeReference<ResponsePage<AuthorDto>> responseTypePage = new ParameterizedTypeReference<ResponsePage<AuthorDto>>(){};
 
     ParameterizedTypeReference<List<AuthorDto>> responseTypeList = new ParameterizedTypeReference<List<AuthorDto>>() {};
+
+
 
     @Test
     public void findFirstPageWithFiveSizeShouldReturnFirstFiveResults() {
