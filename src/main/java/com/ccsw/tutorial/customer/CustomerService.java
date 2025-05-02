@@ -16,5 +16,5 @@ public interface CustomerService {
 
     void delete(Long id) throws Exception;
 
-    Customer findByName(String name);
+    Boolean existByName(String name);
 }

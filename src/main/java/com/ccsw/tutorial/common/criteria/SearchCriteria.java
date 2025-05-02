@@ -13,6 +13,8 @@ public class SearchCriteria {
         this.value = value;
     }
 
+
+
     public String getKey() {
         return key;
     }

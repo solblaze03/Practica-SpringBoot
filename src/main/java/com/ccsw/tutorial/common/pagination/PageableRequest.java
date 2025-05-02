@@ -1,7 +1,10 @@
 package com.ccsw.tutorial.common.pagination;
 
+import com.ccsw.tutorial.loan.model.Loan;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.domain.*;
+import org.springframework.data.jpa.domain.Specification;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

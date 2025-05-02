@@ -4,12 +4,13 @@ package com.ccsw.tutorial.customer.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "client")
+@Table(name = "customer")
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
+
 
     @Column(name = "name", nullable = false, unique = true)
     private String name;

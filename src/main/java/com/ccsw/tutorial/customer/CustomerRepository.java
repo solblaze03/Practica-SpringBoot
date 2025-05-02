@@ -9,5 +9,5 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
     List<Customer> findAllByOrderByIdAsc();
 
-    Customer findByName(String name);
+    Boolean existsByName(String name);
 }

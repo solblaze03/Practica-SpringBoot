@@ -20,6 +20,7 @@ public class GameSpecification implements Specification<Game> {
     @Override
     public Predicate toPredicate(Root<Game> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
         if(criteria.getOperation().equalsIgnoreCase(":") && criteria.getValue() != null) {
+
             Path<String> path = getPath(root);
             if(path.getJavaType() == String.class){
                 return criteriaBuilder.like(path, "%" + criteria.getValue()+ "%");

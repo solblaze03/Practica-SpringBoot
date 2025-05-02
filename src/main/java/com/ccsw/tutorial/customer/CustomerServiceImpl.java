@@ -4,11 +4,14 @@ import com.ccsw.tutorial.customer.model.Customer;
 import com.ccsw.tutorial.customer.model.CustomerDto;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.xml.crypto.Data;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
@@ -36,24 +39,21 @@ public class CustomerServiceImpl implements CustomerService {
         Customer customer;
         if(id == null){
             customer = new Customer();
+            customer.setName(dto.getName());
         }else{
-            customer = this.get(id);
+            customer =  this.get(id);
+
         }
+            Boolean ExistCustomer = this.customerRepository.existsByName(dto.getName());
 
+            if (!ExistCustomer) {
+                customer.setName(dto.getName());
+                this.customerRepository.save(customer);
+                return ResponseEntity.ok(ExistCustomer);
+            } else {
+                return ResponseEntity.badRequest().body(ExistCustomer);
+            }
 
-
-        customer.setName(dto.getName());
-
-        Customer ExistCustomer = this.customerRepository.findByName(customer.getName());
-
-        if(ExistCustomer != null){
-            return ResponseEntity.badRequest().build();
-        }else{
-            System.out.println(false);
-        }
-
-        this.customerRepository.save(customer);
-        return ResponseEntity.ok().build();
     }
 
     @Override
@@ -67,8 +67,8 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer findByName(String name) {
-        return this.customerRepository.findByName(name);
+    public Boolean existByName(String name) {
+        return this.customerRepository.existsByName(name);
     }
 
 

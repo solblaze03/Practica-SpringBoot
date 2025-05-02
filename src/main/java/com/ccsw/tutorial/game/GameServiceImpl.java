@@ -12,6 +12,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -27,6 +28,11 @@ public class GameServiceImpl implements GameService{
     @Autowired
     CategoryService categoryService;
 
+
+    @Override
+    public Game get(Long id) {
+        return this.gameRepository.findById(id).orElse(null);
+    }
 
     @Override
     public List<Game> find(String title, Long idCategory) {
@@ -59,4 +65,8 @@ public class GameServiceImpl implements GameService{
         this.gameRepository.save(game);
 
     }
+
+
+
+
 }
