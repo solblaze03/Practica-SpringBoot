@@ -122,7 +122,6 @@ public class LoanServiceImpl implements LoanService {
         LoanSpecification startDate = new LoanSpecification(new SearchCriteria("fechaInicio","<=",dto.getFechaDevolucion()));
         LoanSpecification returnDate = new LoanSpecification(new SearchCriteria("fechaDevolucion",">=",dto.getFechaInicio()));
         Specification<Loan> spec = Specification.where(idCustomer).and(startDate).and(returnDate);
-
         Long count = this.repository.count(spec);
 
         return (count <= 1) ? true : false;

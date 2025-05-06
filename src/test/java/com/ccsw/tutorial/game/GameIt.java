@@ -5,6 +5,7 @@ import com.ccsw.tutorial.category.model.CategoryDto;
 import com.ccsw.tutorial.game.model.GameDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.core.ParameterizedTypeReference;
@@ -12,6 +13,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.HashMap;
@@ -20,6 +22,9 @@ import java.util.Map;
 import java.util.Objects;
 import static org.junit.jupiter.api.Assertions.*;
 
+
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class GameIt {
 
     public static final String LOCALHOST = "http://localhost:";
@@ -56,13 +61,15 @@ public class GameIt {
 
     @Test
     public void findWithoutFiltersShouldReturnAllGamesInDB() {
+
         int GAMES_WITH_FILTER = 6;
 
         Map<String, Object> params = new HashMap<>();
-        params.put(TITLE_PARAM, EXISTS_TITLE);
+        params.put(TITLE_PARAM, null);
         params.put(CATEGORY_ID_PARAM, null);
 
         ResponseEntity<List<GameDto>> response = restTemplate.exchange(getUrlWithParams(), HttpMethod.GET, null, responseType, params);
+
         assertNotNull(response);
         assertEquals(GAMES_WITH_FILTER, response.getBody().size());
 
@@ -74,7 +81,7 @@ public class GameIt {
         int GAMES_WITH_FILTER = 2;
 
         Map<String, Object> params = new HashMap<>();
-        params.put(TITLE_PARAM, EXISTS_TITLE);
+        params.put(TITLE_PARAM, null);
         params.put(CATEGORY_ID_PARAM, EXISTS_CATEGORY);
 
         ResponseEntity<List<GameDto>> response = restTemplate.exchange(getUrlWithParams() , HttpMethod.GET, null , responseType, params);
