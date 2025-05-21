@@ -2,6 +2,7 @@ package com.ccsw.tutorial.customer.model;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "customer")
@@ -11,7 +12,7 @@ public class Customer {
     @Column(name = "id", nullable = false)
     private Long id;
 
-
+    @NotBlank()
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 

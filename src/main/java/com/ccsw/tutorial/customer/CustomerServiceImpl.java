@@ -2,17 +2,10 @@ package com.ccsw.tutorial.customer;
 
 import com.ccsw.tutorial.customer.model.Customer;
 import com.ccsw.tutorial.customer.model.CustomerDto;
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.data.domain.Sort;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.xml.crypto.Data;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 @Service
@@ -44,21 +37,21 @@ public class CustomerServiceImpl implements CustomerService {
             customer =  this.get(id);
 
         }
-            Boolean ExistCustomer = this.customerRepository.existsByName(dto.getName());
+            Boolean existCustomer = this.customerRepository.existsByName(dto.getName().trim());
 
-            if (!ExistCustomer) {
+            if (!existCustomer) {
                 customer.setName(dto.getName());
                 this.customerRepository.save(customer);
-                return ResponseEntity.ok(ExistCustomer);
+                return ResponseEntity.ok().build();
             } else {
-                return ResponseEntity.badRequest().body(ExistCustomer);
+                return ResponseEntity.badRequest().body(existCustomer);
             }
 
     }
 
     @Override
     public void delete(Long id) throws Exception {
-        System.out.println("------> "+ id+ " -- "+this.get(id).getName());
+
         if(this.get(id) == null ){
             throw new Exception("NotExists");
         }

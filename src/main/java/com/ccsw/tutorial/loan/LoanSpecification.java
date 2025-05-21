@@ -1,10 +1,8 @@
 package com.ccsw.tutorial.loan;
 
 import com.ccsw.tutorial.common.criteria.SearchCriteria;
-import com.ccsw.tutorial.game.model.Game;
 import com.ccsw.tutorial.loan.model.Loan;
 import jakarta.persistence.criteria.*;
-import org.springframework.cglib.core.Local;
 import org.springframework.data.jpa.domain.Specification;
 
 import java.time.LocalDate;

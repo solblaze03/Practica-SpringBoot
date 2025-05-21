@@ -2,7 +2,6 @@ package com.ccsw.tutorial.game;
 
 import com.ccsw.tutorial.author.AuthorService;
 import com.ccsw.tutorial.category.CategoryService;
-import com.ccsw.tutorial.category.model.Category;
 import com.ccsw.tutorial.common.criteria.SearchCriteria;
 import com.ccsw.tutorial.game.model.Game;
 import com.ccsw.tutorial.game.model.GameDto;
@@ -11,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -62,9 +59,10 @@ public class GameServiceImpl implements GameService{
         game.setAuthor(authorService.get(dto.getAuthor().getId()));
         game.setCategory(categoryService.get(dto.getCategory().getId()));
 
-        this.gameRepository.save(game);
+            this.gameRepository.save(game);
 
     }
+
 
 
 

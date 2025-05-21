@@ -1,9 +1,7 @@
 package com.ccsw.tutorial.category.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "category")
@@ -14,7 +12,7 @@ public class Category {
     @Column(name = "id", nullable = false)
     private Long id;
 
-
+    @NotBlank
     @Column(name = "name", nullable = false)
     private String name;
 

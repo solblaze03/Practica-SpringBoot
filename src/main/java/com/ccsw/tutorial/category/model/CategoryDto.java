@@ -1,11 +1,6 @@
 package com.ccsw.tutorial.category.model;
 
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-
-
 public class CategoryDto {
 
     private Long id;

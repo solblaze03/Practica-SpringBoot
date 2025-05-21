@@ -11,7 +11,7 @@ public interface LoanService {
 
     Page<Loan> findPage(LoanSearchDto dto,String title, String customer, String date);
 
-    ResponseEntity save(LoanDto dto);
+    ResponseEntity<?> save(LoanDto dto);
 
     void delete(Long id);
 }

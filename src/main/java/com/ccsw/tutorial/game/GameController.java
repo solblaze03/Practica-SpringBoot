@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,16 +40,9 @@ public class GameController {
 
     @Operation(summary = "Save or Update", description = "Method that saves or updates a Game")
     @RequestMapping(path = {"", "/{id}"}, method = RequestMethod.PUT)
-    public void save(@PathVariable(name = "id",required = false) Long id, @RequestBody GameDto dto){
-
+    public void save(@PathVariable(name = "id",required = false) Long id, @Validated @RequestBody GameDto dto){
         gameService.save(id, dto);
     }
-
-
-
-
-
-
 
 
 }

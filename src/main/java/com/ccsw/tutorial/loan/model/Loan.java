@@ -3,12 +3,8 @@ package com.ccsw.tutorial.loan.model;
 import com.ccsw.tutorial.customer.model.Customer;
 import com.ccsw.tutorial.game.model.Game;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-
 import java.time.LocalDate;
-import java.util.Date;
-
 @Entity
 @Table(name = "loan")
 public class Loan {

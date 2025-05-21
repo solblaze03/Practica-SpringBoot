@@ -52,8 +52,7 @@ public class LoanIT {
     ParameterizedTypeReference<ResponsePage<LoanDto>> responseTypePage = new ParameterizedTypeReference<ResponsePage<LoanDto>>() {
     };
 
-    ParameterizedTypeReference<List<LoanDto>> responseTypeList = new ParameterizedTypeReference<List<LoanDto>>() {
-    };
+
 
 
 
@@ -62,11 +61,17 @@ public class LoanIT {
         customerDto1 = new CustomerDto();
         customerDto1.setId(1L);
 
+
         gameDto1 = new GameDto();
         gameDto1.setId(2L); // Aventureros al tren
 
+
         gameDto2 = new GameDto();
         gameDto2.setId(1L); //FFVII
+
+
+
+
     }
 
 
@@ -81,6 +86,7 @@ public class LoanIT {
         assertEquals(TOTAL_LOAN, response.getBody().getTotalElements());
     }
 
+
     @Test
     public void findSecondPageWithFiveSizeShouldReturnLastResult() {
         int elementsCount = TOTAL_LOAN - PAGE_SIZE;
@@ -92,6 +98,7 @@ public class LoanIT {
         assertEquals(TOTAL_LOAN, response.getBody().getTotalElements());
         assertEquals(elementsCount, response.getBody().getContent().size());
     }
+
 
     @Test
     public void saveShouldCreateNewLoan(){

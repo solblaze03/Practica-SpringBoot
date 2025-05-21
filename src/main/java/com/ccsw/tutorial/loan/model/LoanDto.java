@@ -1,13 +1,9 @@
 package com.ccsw.tutorial.loan.model;
 
-import com.ccsw.tutorial.customer.model.Customer;
-import com.ccsw.tutorial.customer.model.CustomerDto;
-import com.ccsw.tutorial.game.model.Game;
-import com.ccsw.tutorial.game.model.GameDto;
-import jakarta.persistence.*;
 
+import com.ccsw.tutorial.customer.model.CustomerDto;
+import com.ccsw.tutorial.game.model.GameDto;
 import java.time.LocalDate;
-import java.util.Date;
 
 public class LoanDto {
 

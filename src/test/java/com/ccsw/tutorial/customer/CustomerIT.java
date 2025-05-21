@@ -95,8 +95,8 @@ public class CustomerIT {
         ResponseEntity<List<CustomerDto>> response = restTemplate.exchange(LOCALHOST  + port + SERVICE_PATH , HttpMethod.GET, null , responseType);
         assertNotNull(response);
         assertEquals(4, response.getBody().size());
-        String url = LOCALHOST + port + SERVICE_PATH + "/"+ 3;
-        System.out.println(url);
+
+
         restTemplate.exchange(LOCALHOST + port + SERVICE_PATH + "/"+ 3, HttpMethod.DELETE, null, Void.class);
         ResponseEntity<List<CustomerDto>> responseWithCustomerDelete = restTemplate.exchange(LOCALHOST  + port + SERVICE_PATH , HttpMethod.GET, null , responseType);
         assertNotNull(responseWithCustomerDelete);

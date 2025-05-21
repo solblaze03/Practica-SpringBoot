@@ -1,7 +1,6 @@
 package com.ccsw.tutorial.loan;
 
 
-import com.ccsw.tutorial.game.model.GameDto;
 import com.ccsw.tutorial.loan.model.Loan;
 import com.ccsw.tutorial.loan.model.LoanDto;
 import com.ccsw.tutorial.loan.model.LoanSearchDto;
@@ -13,7 +12,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.stream.Collectors;
 
 @Tag(name = "", description = "Api of Loan")
@@ -43,7 +41,7 @@ public class LoanController {
 
     @Operation(summary = "Save", description = "Method that saves or updates a Loan")
     @RequestMapping(path = "", method = RequestMethod.PUT)
-    public ResponseEntity save(@RequestBody LoanDto dto) {
+    public ResponseEntity<?> save(@RequestBody LoanDto dto) {
 
         return this.loanService.save(dto);
     }
