@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 public interface LoanService {
     Loan get(Long id);
 
-    Page<Loan> findPage(LoanSearchDto dto,String title, String customer, String date);
+    Page<Loan> findPage(LoanSearchDto dto,Long title, Long customer, String date);
 
     ResponseEntity<?> save(LoanDto dto);
 

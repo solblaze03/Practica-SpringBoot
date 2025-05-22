@@ -59,7 +59,7 @@ public class GameServiceImpl implements GameService{
         game.setAuthor(authorService.get(dto.getAuthor().getId()));
         game.setCategory(categoryService.get(dto.getCategory().getId()));
 
-            this.gameRepository.save(game);
+        this.gameRepository.save(game);
 
     }
 

@@ -28,12 +28,12 @@ public class LoanController {
 
     @PostMapping(path = "")
     public Page<LoanDto> findPage(@RequestBody LoanSearchDto dto,
-                                  @RequestParam(name = "title", required = false) String title,
-                                  @RequestParam(name = "customer", required = false) String customer,
+                                  @RequestParam(name = "title", required = false) Long idTitle,
+                                  @RequestParam(name = "customer", required = false) Long idCustomer,
                                   @RequestParam(name = "date", required = false) String date
     ) {
 
-        Page<Loan> page = this.loanService.findPage(dto, title, customer, date);
+        Page<Loan> page = this.loanService.findPage(dto, idTitle, idCustomer, date);
 
         return new PageImpl<>(page.getContent().stream().map(e -> modelMapper.map(e, LoanDto.class)).collect(Collectors.toList()), page.getPageable(), page.getTotalElements());
     }

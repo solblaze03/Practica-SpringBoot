@@ -43,13 +43,13 @@ public class LoanServiceImpl implements LoanService {
     }
 
     @Override
-    public Page<Loan> findPage(LoanSearchDto dto, String title, String customer, String date) {
+    public Page<Loan> findPage(LoanSearchDto dto, Long idTitle, Long idCustomer, String date) {
 
         LocalDate lDate = null;
         if (date != null) lDate = LocalDate.parse(date);
 
-        LoanSpecification titleSpec = new LoanSpecification(new SearchCriteria("game.title", ":", title));
-        LoanSpecification customerSpec = new LoanSpecification(new SearchCriteria("customer.name", ":", customer));
+        LoanSpecification titleSpec = new LoanSpecification(new SearchCriteria("game.id", ":", idTitle));
+        LoanSpecification customerSpec = new LoanSpecification(new SearchCriteria("customer.id", ":", idCustomer));
         LoanSpecification loanDate = new LoanSpecification(new SearchCriteria("fechaInicio", "<=", lDate));
         LoanSpecification returnDate = new LoanSpecification(new SearchCriteria("fechaDevolucion", ">=", lDate));
         Specification<Loan> spec = Specification.where(titleSpec).and(customerSpec).and(loanDate).and(returnDate);

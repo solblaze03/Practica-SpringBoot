@@ -12,7 +12,7 @@ public class Customer {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @NotBlank()
+    @NotBlank
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
